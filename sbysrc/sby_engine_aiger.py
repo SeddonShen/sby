@@ -58,6 +58,13 @@ def run(mode, task, engine_idx, engine):
         solver_cmd = " ".join([task.exe_paths["aigbmc"], str(task.opt_depth - 1)] + solver_args[1:])
         status_2 = "PASS"  # aigbmc outputs status 2 when BMC passes
 
+    elif solver_args[0] == "modelchecker":
+        if mode != "bmc":
+            task.error("The aiger solver 'modelchecker' is only supported in BMC mode.")
+        print("solver_args:", solver_args[1:])
+        solver_cmd = " ".join([task.exe_paths["modelchecker"], "-findbug {}".format(task.opt_depth - 1)] + solver_args[1:])
+        status_2 = "PASS"  # modelchecker outputs status 2 when BMC passes
+
     elif solver_args[0] == "imctk-eqy-engine":
         model_variant = "_fold"
         json_output = True

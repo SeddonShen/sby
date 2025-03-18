@@ -1,3 +1,20 @@
+## Add modelchecker's usage
+plz use like command below:
+```bash
+    python3 sby/sbysrc/sby.py ./examples/sub_mc.sby -f --modelchecker /path/to/modelchecker/modelchecker
+```
+
+### Some further changes
+- you can directly change  sby/sbysrc/sby_mode_bmc.py, change the default engine to bitwuzla or some other engines.
+- because sometime yices is very slow for replay the process to generate vcd wave
+- for example:
+```python
+# in line 23 old:
+task.handle_str_option("aigsmt", "yices")
+# new
+task.handle_str_option("aigsmt", "bitwuzla")
+```
+
 SymbiYosys (sby) is a front-end driver program for [Yosys](https://yosyshq.net/yosys/)-based formal hardware verification flows. See [https://yosyshq.readthedocs.io/projects/sby/](https://yosyshq.readthedocs.io/projects/sby/) for documentation on how to use SymbiYosys.
 
 SymbiYosys (sby) itself is licensed under the ISC license, note that the solvers and other components used by SymbiYosys come with their own license terms. There is some more details in the ["Selecting the right engine" section of the documentation](https://yosyshq.readthedocs.io/projects/sby/en/latest/quickstart.html#selecting-the-right-engine).
