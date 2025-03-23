@@ -21,7 +21,7 @@ from sby_core import SbyProc
 
 def run(task):
     task.handle_int_option("depth", 20)
-    task.handle_str_option("aigsmt", "yices")
+    task.handle_str_option("aigsmt", "bitwuzla")
 
     for engine_idx, engine in task.engine_list():
         task.log(f"{click.style(f'engine_{engine_idx}', fg='magenta')}: {' '.join(engine)}")
