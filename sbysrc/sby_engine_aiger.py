@@ -53,7 +53,7 @@ def run(mode, task, engine_idx, engine):
         if mode == "prove":
             solver_cmd = " ".join([task.exe_paths["rIC3"], "--witness"] + solver_args[1:])
         if mode == "bmc":
-            solver_cmd = " ".join([task.exe_paths["rIC3"], "--bmc-max-k {}".format(task.opt_depth - 1), "-e bmc", "-v 0", "--witness"] + solver_args[1:])
+            solver_cmd = " ".join([task.exe_paths["rIC3"], "--bmc-max-k {}".format(task.opt_depth - 1), "-e bmc", "-v 1", "--witness"] + solver_args[1:])
             status_2 = "PASS"  # rIC3 outputs status 2 when BMC passes
 
     elif solver_args[0] == "aigbmc":
@@ -138,6 +138,9 @@ def run(mode, task, engine_idx, engine):
             if line == ".":
                 end_of_cex = True
             return None
+        
+        if line.startswith("bmc depth:"):
+            return line
 
         if line.startswith("u"):
             return f"No CEX up to depth {int(line[1:])-1}."
@@ -188,8 +191,8 @@ def aigsmt_trace_callback(task, engine_idx, proc_status, *, run_aigsmt, smtbmc_v
             smtbmc_opts  += ["--vlogtb-top", task.opt_tbtop]
         smtbmc_opts += ["--noprogress", f"--append {smtbmc_append}"]
         if smtbmc_vcd:
-            smtbmc_opts += [f"--dump-vcd {trace_prefix}.vcd"]
-        smtbmc_opts += [f"--dump-yw {trace_prefix}.yw", f"--dump-vlogtb {trace_prefix}_tb.v", f"--dump-smtc {trace_prefix}.smtc"]
+            smtbmc_opts += [f"--dump-vcd {trace_prefix}{engine_idx}.vcd"]
+        smtbmc_opts += [f"--dump-yw {trace_prefix}.yw", f"--dump-vlogtb {trace_prefix}{engine_idx}_tb.v", f"--dump-smtc {trace_prefix}.smtc"]
 
         proc2 = SbyProc(
             task,
