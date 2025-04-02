@@ -102,7 +102,7 @@ def run(mode, task, engine_idx, engine):
     proc_status = None
     produced_cex = False
     end_of_cex = False
-    aiw_file = open(f"{task.workdir}/engine_{engine_idx}/trace.aiw", "w")
+    aiw_file = open(f"{task.workdir}/engine_{engine_idx}/trace{engine_idx}.aiw", "w")
 
     def output_callback(line):
         nonlocal proc_status
@@ -180,11 +180,12 @@ def aigsmt_trace_callback(task, engine_idx, proc_status, *, run_aigsmt, smtbmc_v
 
     witness_proc = SbyProc(
         task, f"engine_{engine_idx}", [],
-        f"cd {task.workdir}; {task.exe_paths['witness']} aiw2yw engine_{engine_idx}/{name}.aiw model/design_aiger.ywa engine_{engine_idx}/{name}{aiw2yw_suffix}.yw",
+        f"cd {task.workdir}; {task.exe_paths['witness']} aiw2yw engine_{engine_idx}/{name}{engine_idx}.aiw model/design_aiger.ywa engine_{engine_idx}/{name}{engine_idx}{aiw2yw_suffix}.yw",
     )
     final_proc = witness_proc
 
-    if run_aigsmt:
+    if False:
+    # if run_aigsmt:
         smtbmc_opts = []
         smtbmc_opts += ["-s", task.opt_aigsmt]
         if task.opt_tbtop is not None:
@@ -198,7 +199,7 @@ def aigsmt_trace_callback(task, engine_idx, proc_status, *, run_aigsmt, smtbmc_v
             task,
             f"engine_{engine_idx}",
             [*task.model("smt2"), witness_proc],
-            f"cd {task.workdir}; {task.exe_paths['smtbmc']} {' '.join(smtbmc_opts)} --yw engine_{engine_idx}/{name}{aiw2yw_suffix}.yw model/design_smt2.smt2",
+            f"cd {task.workdir}; {task.exe_paths['smtbmc']} {' '.join(smtbmc_opts)} --yw engine_{engine_idx}/{name}{engine_idx}{aiw2yw_suffix}.yw model/design_smt2.smt2",
             logfile=open(f"{task.workdir}/engine_{engine_idx}/logfile2.txt", "w"),
         )
 
