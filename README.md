@@ -1,6 +1,6 @@
 ## 🧩 Integrating Modelchecker with SymbiYosys (SBY)
 
-**Modelchecker** can serve as a backend solver in the [SymbiYosys (SBY)](https://github.com/YosysHQ/sby) formal verification flow, enabling fast bit-level checking of Verilog designs, such as modules from [XiangShan](https://github.com/OpenXiangShan/XiangShan).
+**[Modelchecker](https://github.com/ISCAS-modelchecker/modelchecker)** can serve as a backend solver in the [SymbiYosys (SBY)](https://github.com/YosysHQ/sby) formal verification flow, enabling fast bit-level checking of Verilog designs, such as modules from [XiangShan](https://github.com/OpenXiangShan/XiangShan).
 
 ### ✅ Basic Usage
 
