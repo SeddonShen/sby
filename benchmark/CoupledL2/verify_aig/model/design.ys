@@ -1,8 +1,0 @@
-# running in /home/zhulf/project/xiangshan/sby/benchmark/CoupledL2/verify_aig/src/
-read_verilog -sv ClockGate.v LogPerfHelper.v ResetCounter.v STD_CLKGT_func.v TLLogWriter.v VerifyTop.sv
-prep -top VerifyTop -nordff
-
-hierarchy -smtcheck
-rename -witness
-write_jny -no-connections ../model/design.json
-write_rtlil ../model/design.il
