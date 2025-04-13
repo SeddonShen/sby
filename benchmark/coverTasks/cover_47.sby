@@ -1,0 +1,97 @@
+[options]
+mode bmc
+depth 50
+timeout 5400
+
+[engines]
+aiger rIC3
+
+[script]
+read -formal define.sv
+read -formal DifftestIntWriteback.v
+read -formal GEN_w130_toggle.v
+read -formal GEN_w1_toggle.v
+read -formal DifftestCSRState.v
+read -formal GEN_w4_toggle.v
+read -formal GEN_w58_toggle.v
+read -formal DifftestArchIntRegState.v
+read -formal GEN_w28_toggle.v
+read -formal GEN_w27_toggle.v
+read -formal DifftestArchEvent.v
+read -formal GEN_w20_toggle.v
+read -formal DifftestLrScEvent.v
+read -formal FormalTop.sv
+read -formal GEN_w62_toggle.v
+read -formal GEN_w65_toggle.v
+read -formal GEN_w44_toggle.v
+read -formal GEN_w5_toggle.v
+read -formal plusarg_reader.v
+read -formal SimTop.sv
+read -formal GEN_w3_toggle.v
+read -formal GEN_w29_toggle.v
+read -formal DifftestTrapEvent.v
+read -formal GEN_w2_toggle.v
+read -formal GEN_w32_toggle.v
+read -formal GEN_w8_toggle.v
+read -formal GEN_w9_toggle.v
+read -formal DifftestStoreEvent.v
+read -formal GEN_w36_toggle.v
+read -formal MemRWHelper.v
+read -formal EICG_wrapper.v
+read -formal GEN_w40_toggle.v
+read -formal DifftestSnapshotCSRState.v
+read -formal GEN_w7_toggle.v
+read -formal GEN_w6_toggle.v
+read -formal GEN_w42_toggle.v
+read -formal DifftestArchIntDelayedUpdate.v
+read -formal GEN_w39_toggle.v
+read -formal GEN_w64_toggle.v
+read -formal DifftestInstrCommit.v
+prep -top FormalTop
+chformal -remove -assert c:cov_count_47 %n
+
+
+[files]
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestIntWriteback.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w130_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w1_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestCSRState.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w4_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w58_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestArchIntRegState.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w28_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w27_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestArchEvent.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w20_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestLrScEvent.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/FormalTop.sv
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w62_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w65_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w44_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w5_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/plusarg_reader.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/SimTop.sv
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w3_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w29_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestTrapEvent.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w2_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w32_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w8_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w9_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestStoreEvent.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w36_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/MemRWHelper.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/EICG_wrapper.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w40_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestSnapshotCSRState.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w7_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w6_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w42_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestArchIntDelayedUpdate.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w39_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/GEN_w64_toggle.v
+/home/liujy/hw_verification/rocket-chip/ccover/Formal/coverTasks/rtl/DifftestInstrCommit.v
+
+[file define.sv]
+`define SYNTHESIS
+`define sfuzz_rand_reg rand reg

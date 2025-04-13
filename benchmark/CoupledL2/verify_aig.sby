@@ -1,0 +1,19 @@
+[options]
+mode bmc
+depth 2000
+vcd on
+
+[engines]
+aiger modelchecker
+
+[script]
+read_verilog -sv ClockGate.v LogPerfHelper.v ResetCounter.v STD_CLKGT_func.v TLLogWriter.v VerifyTop.sv
+prep -top VerifyTop -nordff
+
+[files]
+ClockGate.v
+LogPerfHelper.v
+ResetCounter.v
+STD_CLKGT_func.v
+TLLogWriter.v
+VerifyTop.sv

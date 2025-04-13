@@ -1,32 +1,39 @@
-## Add modelchecker's usage
-plz use like command below:
+## 🧩 Integrating Modelchecker with SymbiYosys (SBY)
+
+**Modelchecker** can serve as a backend solver in the [SymbiYosys (SBY)](https://github.com/YosysHQ/sby) formal verification flow, enabling fast bit-level checking of Verilog designs, such as modules from [XiangShan](https://github.com/OpenXiangShan/XiangShan).
+
+### ✅ Basic Usage
+
 ```bash
-    python3 sby/sbysrc/sby.py ./examples/sub_mc.sby -f --modelchecker /path/to/modelchecker/modelchecker
+python3 /path/to/sby/sbysrc/sby.py /path/to/verify_aig.sby -f --modelchecker /path/to/modelchecker
 ```
 
-### Some further changes
-- you can directly change  sby/sbysrc/sby_mode_bmc.py, change the default engine to bitwuzla or some other engines.
-- because sometime yices is very slow for replay the process to generate vcd wave
-- for example:
+### 📦 Example: Verifying a XiangShan Module
+```bash
+# Load OSS-CAD Suite environment (adjust the path accordingly)
+source /path/to/oss-cad-suite/environment
+
+# Navigate to the target test directory
+cd ./sby/benchmark/CoupledL2/CoupledL2_L2AsL1_TileLink_mshrCtl_0508_2L2_L3
+
+# Run SymbiYosys with Modelchecker as the backend solver
+python3 ./sby/sbysrc/sby.py ./sby/benchmark/CoupledL2/verify_aig.sby -f --modelchecker ./sby/modelchecker
+```
+⚠️ Make sure to adjust `/path/to/oss-cad-suite/` to your actual OSS-CAD Suite location.
+
+### ⚙️ Optional: Improve Trace Replay Speed
+By default, SBY may use `yices` to replay AIG traces, which can be slow.
+To improve performance, change the engine in `sby/sbysrc/sby_mode_bmc.py`:
+
 ```python
-# in line 23 old:
+# Before (line 23):
 task.handle_str_option("aigsmt", "yices")
-# new
+# After:
 task.handle_str_option("aigsmt", "bitwuzla")
 ```
 
-SymbiYosys (sby) is a front-end driver program for [Yosys](https://yosyshq.net/yosys/)-based formal hardware verification flows. See [https://yosyshq.readthedocs.io/projects/sby/](https://yosyshq.readthedocs.io/projects/sby/) for documentation on how to use SymbiYosys.
+### 🔗 Resources
 
-SymbiYosys (sby) itself is licensed under the ISC license, note that the solvers and other components used by SymbiYosys come with their own license terms. There is some more details in the ["Selecting the right engine" section of the documentation](https://yosyshq.readthedocs.io/projects/sby/en/latest/quickstart.html#selecting-the-right-engine).
-
----
-
-SymbiYosys (sby) is part of the [Tabby CAD Suite](https://www.yosyshq.com/tabby-cad-datasheet) and the [OSS CAD Suite](https://github.com/YosysHQ/oss-cad-suite-build)! The easiest way to use sby is to install the binary software suite, which contains all required dependencies, including all supported solvers.
-
-* [Contact YosysHQ](https://www.yosyshq.com/contact) for a [Tabby CAD Suite](https://www.yosyshq.com/tabby-cad-datasheet) Evaluation License and download link
-* OR go to https://github.com/YosysHQ/oss-cad-suite-build/releases to download the free OSS CAD Suite
-* Follow the [Install Instructions on GitHub](https://github.com/YosysHQ/oss-cad-suite-build#installation)
-
-Make sure to get a Tabby CAD Suite Evaluation License for extensive SystemVerilog Assertion (SVA) support, as well as industry-grade SystemVerilog and VHDL parsers!
-
-For more information about the difference between Tabby CAD Suite and the OSS CAD Suite, please visit https://www.yosyshq.com/tabby-cad-datasheet.
+- 📚 [SymbiYosys Documentation](https://yosyshq.readthedocs.io/projects/sby/)
+- 💾 [OSS CAD Suite (Free Download)](https://github.com/YosysHQ/oss-cad-suite-build/releases)
+- 🧪 [Tabby CAD Suite (Evaluation License)](https://www.yosyshq.com/tabby-cad-datasheet)
